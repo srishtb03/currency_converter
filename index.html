@@ -1,0 +1,57 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <title>Currency Converter</title>
+    <style>
+        body {
+            font-family: Arial;
+            text-align: center;
+            margin-top: 50px;
+        }
+        input, select {
+            padding: 8px;
+            margin: 10px;
+        }
+        .result {
+            margin-top: 20px;
+            font-size: 1.2em;
+            color: green;
+        }
+        .error {
+            color: red;
+        }
+    </style>
+</head>
+<body>
+    <h1>Currency Converter</h1>
+    <form method="POST">
+        <label>From:</label>
+        <select name="from_currency">
+            {% for code in currencies %}
+            <option value="{{ code }}">{{ code }}</option>
+            {% endfor %}
+        </select>
+
+        <label>To:</label>
+        <select name="to_currency">
+            {% for code in currencies %}
+            <option value="{{ code }}">{{ code }}</option>
+            {% endfor %}
+        </select>
+
+        <br>
+
+        <input type="text" name="amount" placeholder="Amount to convert" required>
+        <br>
+        <input type="submit" value="Convert">
+    </form>
+
+    {% if result %}
+        <div class="result">{{ result }}</div>
+    {% endif %}
+
+    {% if error %}
+        <div class="error">{{ error }}</div>
+    {% endif %}
+</body>
+</html>
